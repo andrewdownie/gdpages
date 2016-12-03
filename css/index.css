@@ -1,0 +1,25 @@
+a{
+    cursor: pointer;
+    cursor: hand;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+
+#navbar-spacing{
+    margin-bottom: 70px;
+}
+
+.well{
+    height: 40vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    resize: none;
+}
+
+a .well{
+    color: black;
+
+}
