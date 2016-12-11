@@ -27,6 +27,9 @@ function RequestTextFile(callback, file_id, api_key){
         JSON.stringify(data)
 
     }).fail(function(jsonError){//This returns an error despite working, and I don't know why
+        //console.log(jsonError.responseText)
+
+
         var response = jsonError.responseText
         var result = response.replace(/________________/g, "")// Sketchy way of removing the new page indicator
 
@@ -124,7 +127,7 @@ function _BuildFileUrl(file_id, api_key){
 ///     - takes a google drive file id, and an google api key, and returns a url
 ///         to be used in an http get request, to get that files contents as plain text
 ///
-    return "https://www.googleapis.com/drive/v2/files/" + file_id + "/export?mimeType=text%2Fplain&key=" + api_key
+    return "https://www.googleapis.com/drive/v2/files/" + file_id + "/export?mimeType=text%2Fhtml&key=" + api_key
 }
 
 

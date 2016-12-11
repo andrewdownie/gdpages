@@ -20,9 +20,9 @@ function BuildDocumentElement(name, docID){
     docElement +=              name
     docElement += '        </a>'
     docElement += '    </h3>'
-    docElement += '    <textarea readonly="readonly" class="well well-sm">'
+    docElement += '    <div readonly="readonly" class="well well-sm">'
     docElement += '        Loading...'
-    docElement += '    </textarea>'
+    docElement += '    </div>'
 
     docElement += '</div>'
 

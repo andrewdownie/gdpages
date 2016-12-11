@@ -1,4 +1,4 @@
-var NAV_FILE_PATH = "nav.html"
+var NAV_FILE_PATH = "/nav.html"
 
 
 /////
