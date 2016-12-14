@@ -7,13 +7,14 @@ var ROOT_FOLDER_ID = '0B1esFIYXspGHRUQ1T1RkSjZOa0U'
 ///// Document Ready +
 /////
 $(document).ready(function(){
-    LoadNavBar(LoadNavBarLinks, "top-navigation")
+    LoadNavBar(LoadNavBarLinks)
 
     $("#current-folder").text("Home")
     $("#current-folder").attr('href', 'https://drive.google.com/drive/folders/' + ROOT_FOLDER_ID)
 
     SetupButtonClick()
 });
+
 
 /////
 ///// LoadNavBarLinks
@@ -80,9 +81,13 @@ function FillPage(folderContents, folder_id){
     }
 
     for(var i = 0; i < documents.length; i++){
+        console.log("halp" + i)
         $("#document-insertion").append(BuildDocumentElement(documents[i].name, documents[i].id))
         RequestTextFile(FillDocumentElement, documents[i].id, API_KEY)
+
+        //Request a single document here, instead of all of them, like above
     }
+
 }
 
 /////

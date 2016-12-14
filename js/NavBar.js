@@ -4,18 +4,21 @@ var NAV_FILE_PATH = "/nav.html"
 /////
 ///// LoadNavBar
 /////
-function LoadNavBar(navbarReady, insertionElement_ID){
-/// insertionElement_ID
-///     - where the navbar is to be inserted onto the page
-///     - should be the first element in the body, so the nav bar will appear at
-///         the top of the page
+function LoadNavBar(navbarReady){
+/// DESCRIPTION:
+///     - Loads the navbar to the top of the body
 /// navbarReady
 ///     - callback function for when the navbar has been loaded to the page
 ///
 
-    $("#" + insertionElement_ID).load(NAV_FILE_PATH, function(){
+    /*$("body").load(NAV_FILE_PATH, function(){
         navbarReady()
-    });
+    });*/
+
+    $.get(NAV_FILE_PATH, function(data){
+        $(data).prependTo("body")
+        navbarReady()
+    }, 'text' );
 }
 
 

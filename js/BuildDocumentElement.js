@@ -26,5 +26,6 @@ function BuildDocumentElement(name, docID){
 
     docElement += '</div>'
 
+    console.log(docElement);
     return docElement
 }
