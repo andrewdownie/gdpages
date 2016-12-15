@@ -10,10 +10,17 @@ body{
     border-radius: 0;
 }
 
-.navbar-lower  .navbar-nav > li > a {
-    padding-top:5px !important; padding-bottom:5px !important;
+.navbar-lower .navbar-nav > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.navbar-lower .navbar-nav > li{
+    float: left;
+    text-align: center;
 }
 
+
+
 .navbar-lower {
-    min-height:32px !important
+    min-height: 32px;
 }
