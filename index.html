@@ -1,21 +1,23 @@
 <html>
 
 <head>
-    <!-- Lib JS -->
+    <!-- lib_js -->
     <script src="lib_js/jquery-3.1.1.min.js"></script>
     <script src="lib_js/bootstrap.min.js"></script>
 
-    <!-- Prerequisite JS -->
-    <script src="js/GoogleDrive.js"></script>
-    <script src="js/BuildDocumentElement.js"></script>
-    <script src="js/NavBar.js"></script>
+    <!-- prereq_js -->
+    <script src="prereq_js/BuildDocumentElement.js"></script>
+    <script src="prereq_js/GoogleDrive.js"></script>
+    <script src="prereq_js/CONSTANTS.js"></script>
+    <script src="prereq_js/NavBar.js"></script>
 
-    <!-- Include JS -->
+    <!-- js (Page specific)-->
     <script src="js/index.js"></script>
 
     <!-- Include CSS -->
     <link rel="stylesheet" type="text/css" href="lib_css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
 
 
 </head>
@@ -24,14 +26,8 @@
 <body>
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <h1> <a target="_blank" id="current-folder"></a> </h1>
-            </div>
-        </div>
-
         <div id="document-insertion" class="row">
-            this is a test
+            <span id="loading">Loading...</span>
         </div>
     </div><!-- Close container -->
 </body>

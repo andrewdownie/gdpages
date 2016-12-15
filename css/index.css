@@ -3,19 +3,39 @@ a{
     cursor: hand;
     text-decoration: none;
 }
-a:hover{
+a:hover, a:active, a:focus{
     text-decoration: none;
 }
 
-.well{
-    height: 40vh;
+.contents-body{
     width: 100%;
-    overflow-y: auto;
-    overflow-x: auto;
-    resize: none;
+    word-wrap:break-word;
+
 }
 
 a .well{
     color: black;
 
+}
+
+body{
+    font-family: Verdana;
+}
+
+
+/*
+I DONT KNOW WHAT THE BELOW CSS DOES YET, TAKE FROM HERE:
+http://jsfiddle.net/PxxjN/
+should let drop downs sit inside dropdowns forever...
+*/
+.nav ul {
+}
+.nav li ul {
+    display: none;
+}
+.nav ul li a {
+    display: block;
+}
+.nav li:hover>ul {
+    display: block;
 }
