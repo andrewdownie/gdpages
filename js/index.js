@@ -1,10 +1,14 @@
+var backStack = []
+
 /////
 ///// Document Ready
 /////
 $(document).ready(function(){
+
     LoadNavBar(LoadNavBarLinks)
 
     SetupButtonClick()
+
 });
 
 
@@ -14,8 +18,16 @@ $(document).ready(function(){
 function LoadNavBarLinks(){
 ///DESCRIPTION
 ///     - called when the navbar is loaded
-    //RequestFolderContents(SetupNavLinks, ROOT_FOLDER_ID, API_KEY)
+
+
     RequestFolderContents(SetupNavLinks, CONSTANTS.ROOT_FOLDER_ID, CONSTANTS.API_KEY)
+
+    backStack[0] = {}
+    backStack[0].id = CONSTANTS.ROOT_FOLDER_ID
+    backStack[0].name = "GD Pages"
+
+    $("#folder-name").text(backStack[0].name)
+    $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + backStack[0].id)
 }
 
 
@@ -28,13 +40,17 @@ function SetupNavLinks(folderContents, folder_id){
 ///         (in GoogleDrive.js)
 
     var folders = folderContents.folders
-
+    var documents = folderContents.documents
 
 
 
     $("#li-loading").remove()
     for(var i = 0; i < folders.length; i++){
-        AddNavBarLink(folders[i].name, folders[i].id, "#navbar ul")
+        AddNavBarLink(folders[i].name, folders[i].id, ".navbar-nav-upper")
+    }
+
+    for(var i = 0; i < documents.length; i++){
+        AddNavBarLink(documents[i].name, documents[i].id, ".navbar-nav-lower")
     }
 
     FillPage(folderContents, folder_id)
@@ -49,13 +65,69 @@ function SetupButtonClick(){
 ///DESCRIPTION
 ///     - All click events and on 'click' events should be declared here
 
-    $("body").on('click', "#navbar ul li a", function(){
-        /*$("#current-folder").text(this.text)
-        $("#current-folder").attr('href', 'https://drive.google.com/drive/folders/' + this.id)*/
+    ///
+    /// Click folder link
+    ///
+    $("body").on('click', ".navbar-nav-upper li a", function(){
 
-        alert("You touched da fishy")
         $("#document-insertion").empty()
-        RequestFolderContents(FillPage, this.id, CONSTANTS.API_KEY)
+        $("#folder-name").text($(this).text())
+        $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + $(this).attr('id'))
+
+        if($(this).attr('id') == CONSTANTS.ROOT_FOLDER_ID){
+            $(".nav-back-chevrons").hide()
+        }
+        else{
+            $(".nav-back-chevrons").show()
+        }
+
+        $(".navbar-nav-lower").empty()
+        $(".navbar-nav-upper").empty()
+
+        backStack.push({})
+        backStack[backStack.length-1].id = $(this).attr('id')
+        backStack[backStack.length-1].name = $(this).text()
+
+
+
+        RequestFolderContents(SetupNavLinks, backStack[backStack.length-1].id, CONSTANTS.API_KEY)
+    });
+
+    ///
+    /// Click back link
+    ///
+    $("body").on('click', ".nav-back-chevrons", function(){
+
+        $("#document-insertion").empty()
+        backStack.pop()
+
+        $("#folder-name").text(backStack[backStack.length-1].name)
+
+        if(backStack[backStack.length-1].id == CONSTANTS.ROOT_FOLDER_ID){
+            $(".nav-back-chevrons").hide()
+        }
+        else{
+            $(".nav-back-chevrons").show()
+        }
+
+        $(".navbar-nav-lower").empty()
+        $(".navbar-nav-upper").empty()
+
+        RequestFolderContents(SetupNavLinks, backStack[backStack.length-1].id, CONSTANTS.API_KEY)
+
+    });
+
+    ///
+    /// Click file link
+    ///
+    $("body").on('click', ".navbar-nav-lower li a", function(){
+
+        $("#document-insertion").empty()
+
+
+        $("#document-insertion").append(BuildDocumentElement( $(this).text(),  $(this).attr("id")))
+        RequestTextFile(FillDocumentElement, $(this).attr("id"), CONSTANTS.API_KEY)
+
     });
 }
 
@@ -66,6 +138,7 @@ function FillPage(folderContents, folder_id){
 ///DESCRIPTION
 ///     - callback from RequestFolderContents, see that function for details
 ///         (in GoogleDrive.js)
+    //alert("hi")
     $("#loading").html("")
     var documents = folderContents.documents
 
@@ -76,20 +149,21 @@ function FillPage(folderContents, folder_id){
     }
 
 
-
+    var homePageFound = false
     for(var i = 0; i < documents.length; i++){
         if(documents[i].name == "Home"){
+            homePageFound = true
+
             $("#document-insertion").append(BuildDocumentElement(documents[i].name, documents[i].id))
             RequestTextFile(FillDocumentElement, documents[i].id, CONSTANTS.API_KEY)
-        }
-        else{
-            $("#document-insertion").append("<h2>There is no home page :( </h3>")
 
-            $("#document-insertion").append("<ul>")
-            $("#document-insertion").append("<li> Create a google doc named 'Home' in the root google drive folder</li>")
-            $("#document-insertion").append("<li> Create folders in the root google drive folder to add nav links</li>")
-            $("#document-insertion").append("</ul>")
+            break
         }
+    }
+
+    if(homePageFound == false){
+        $("#document-insertion").append(BuildDocumentElement(documents[0].name, documents[0].id))
+        RequestTextFile(FillDocumentElement, documents[0].id, CONSTANTS.API_KEY)
     }
 
 }
@@ -103,5 +177,6 @@ function FillDocumentElement(contents, file_id){
 ///     - callback from RequestTextFile, see that function for details
 ///         (in GoogleDrive.js)
 
-    $("#" + file_id + " .contents-body").html(contents)
+    //alert("#" + file_id + " .contents-body")
+    $("#contents-body").html(contents)
 }

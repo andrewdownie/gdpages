@@ -20,7 +20,7 @@ function BuildDocumentElement(name, docID){
     docElement +=              name
     docElement += '        </a>'
     docElement += '    </h1>'
-    docElement += '    <div class="contents-body">'
+    docElement += '    <div id="contents-body">'
     docElement += '        Loading...'
     docElement += '    </div>'
 
@@ -28,21 +28,3 @@ function BuildDocumentElement(name, docID){
 
     return docElement
 }
-
-/*
-var docElement = ""
-
-docElement += '<div id="' + docID + '" class="col-md-4">'
-docElement += '    <h3>'
-docElement += '        <a target="_blank" href="https://docs.google.com/document/d/' + docID + '/edit">'
-docElement +=              name
-docElement += '        </a>'
-docElement += '    </h3>'
-docElement += '    <div readonly="readonly" class="well well-sm">'
-docElement += '        Loading...'
-docElement += '    </div>'
-
-docElement += '</div>'
-
-return docElement
-*/

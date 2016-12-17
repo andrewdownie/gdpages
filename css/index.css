@@ -1,41 +1,16 @@
-a{
+a, a:hover, a:active, a:focus{
     cursor: pointer;
     cursor: hand;
     text-decoration: none;
 }
-a:hover, a:active, a:focus{
-    text-decoration: none;
-}
 
-.contents-body{
+html, body, #document-insertion{
     width: 100%;
     word-wrap:break-word;
-
-}
-
-a .well{
-    color: black;
-
+    min-height: 100vh;
+    height: 100vh;
 }
 
 body{
     font-family: Verdana;
-}
-
-
-/*
-I DONT KNOW WHAT THE BELOW CSS DOES YET, TAKE FROM HERE:
-http://jsfiddle.net/PxxjN/
-should let drop downs sit inside dropdowns forever...
-*/
-.nav ul {
-}
-.nav li ul {
-    display: none;
-}
-.nav ul li a {
-    display: block;
-}
-.nav li:hover>ul {
-    display: block;
 }
