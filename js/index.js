@@ -102,6 +102,7 @@ function SetupButtonClick(){
         backStack.pop()
 
         $("#folder-name").text(backStack[backStack.length-1].name)
+        $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + backStack[backStack.length-1].id)
 
         if(backStack[backStack.length-1].id == CONSTANTS.ROOT_FOLDER_ID){
             $(".nav-back-chevrons").hide()
