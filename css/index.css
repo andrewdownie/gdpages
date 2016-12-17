@@ -14,3 +14,7 @@ html, body, #document-insertion{
 body{
     font-family: Verdana;
 }
+
+.navbar-brand, .nav-back-chevrons{
+    min-width: 50px;
+}

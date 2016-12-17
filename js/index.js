@@ -75,10 +75,10 @@ function SetupButtonClick(){
         $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + $(this).attr('id'))
 
         if($(this).attr('id') == CONSTANTS.ROOT_FOLDER_ID){
-            $(".nav-back-chevrons").hide()
+            $(".nav-back").hide()
         }
         else{
-            $(".nav-back-chevrons").show()
+            $(".nav-back").show()
         }
 
         $(".navbar-nav-lower").empty()
@@ -96,7 +96,7 @@ function SetupButtonClick(){
     ///
     /// Click back link
     ///
-    $("body").on('click', ".nav-back-chevrons", function(){
+    $("body").on('click', ".nav-back", function(){
 
         $("#document-insertion").empty()
         backStack.pop()
@@ -105,10 +105,10 @@ function SetupButtonClick(){
         $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + backStack[backStack.length-1].id)
 
         if(backStack[backStack.length-1].id == CONSTANTS.ROOT_FOLDER_ID){
-            $(".nav-back-chevrons").hide()
+            $(".nav-back").hide()
         }
         else{
-            $(".nav-back-chevrons").show()
+            $(".nav-back").show()
         }
 
         $(".navbar-nav-lower").empty()
