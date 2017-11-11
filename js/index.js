@@ -24,7 +24,7 @@ function LoadNavBarLinks(){
 
     backStack[0] = {}
     backStack[0].id = CONSTANTS.ROOT_FOLDER_ID
-    backStack[0].name = "GD Pages"
+    backStack[0].name = "HubDocs"
 
     $("#folder-name").text(backStack[0].name)
     $("#folder-name").attr("href", href="https://docs.google.com/drive/folders/" + backStack[0].id)
